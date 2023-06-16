@@ -146,55 +146,23 @@ router.post('/images', async (req, res) => {
   }
 })
 
-/* router.get('/images/:imageId', async (req, res) => {
-  let { imageId } = req.params
-
-  try {
-    let image = await Image.findById(imageId)
-    res.cookie('imageName', image.name)
-    //let imgDiv = `<div id="images"><img src='http://localhost:3000/recipe-${image.name}' /><br><br><a href="/download">Download</a></div>`
-    //res.send(imgDiv)
-    //res.download(image)
-    const downloadPath =
-      path.resolve('./uploads') + '/recipe-' + req.cookies.imageName
-    //res.download(downloadPath)
-
-    const filename = path.basename(downloadPath)
-
-    const mimetype = mime.contentType(downloadPath)
-
-    res.setHeader('Content-disposition', 'attachment; filename=' + filename)
-
-    res.setHeader('Content-type', mimetype)
-
-    const filestream = fs.createReadStream(downloadPath)
-    filestream.pipe(res)
-  } catch (err) {
-    logger.error(err.message)
-
-    res.status(400).json({ error: err.message })
-  }
-})
- */
-
 router.get('/images/:imageId', async (req, res) => {
   let { imageId } = req.params
 
   try {
     let image = await Image.findById(imageId)
 
-    //res.cookie('imageName', image.name)
+    res.cookie('imageName', image.name)
 
-    const downloadPath = path.resolve('./uploads') + '/recipe-' + image.name
+    //let imgDiv = `<div id="images"><img src='http://localhost:3000/recipe-${image.name}' /><br><br><a href="/download">Download</a></div>`
 
-    res.download(downloadPath)
-
+    res.render('images', { title: 'Recipes', image: image })
   } catch (err) {
-    logger.error(err.message)
-
+    console.error(err.message)
     res.status(400).json({ error: err.message })
   }
 })
+
 
 router.get('/download', (req, res) => {
   const downloadPath =
