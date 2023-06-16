@@ -23,7 +23,7 @@ const dbConnection = async () => {
     logger.warn(`Database connected: ${dbURL}`)
 
     let recordCount = await conn.db
-      .collection('Recipes')
+      .collection('recipes')
       .estimatedDocumentCount()
 
     if (recordCount === 0) {
