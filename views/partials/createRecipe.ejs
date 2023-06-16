@@ -1,0 +1,27 @@
+<form id="create-form" action="/recipe/" enctype="multipart/form-data" method="POST">
+    <label for="name">Name</label>
+    <input type="text" id="name-text" name="name">
+    <h4>Ingredients</h4>
+    <textarea id="ingredients-text" class="materialize-textarea"></textarea>
+    <button id="add-ingredient" type="button" class="btn">Add ingredient</button>
+    <br />
+    <p id="as-ingredient"></p>
+    <h4>Instructions</h4>
+    <textarea id="instructions-text" class="materialize-textarea"></textarea>
+    <button id="add-instruction" type="button" class="btn">Add instruction</button>
+    <br />
+    <p id="as-instruction"></p><br>
+    <h4>Images</h4>
+    <input id="image-input" type="file" name="images" accept="image/*" multiple><br><br>
+    <fieldset style="margin-bottom: 2rem;">
+        <legend>Categories</legend>
+        <% categories.forEach(function(element) { %>
+            <label for="<%- element.name %>">
+                <input type="checkbox" id="<%- element.name %>" name="text" value="<%- element.name %>" />
+                <span><%- element.name %></span>
+            </label><br>
+            <% })%>
+    </fieldset>
+
+    <button id="submit" type="submit" class="btn">Submit</button>
+</form>

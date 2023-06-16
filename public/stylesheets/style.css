@@ -1,0 +1,25 @@
+*, html {
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+  }
+  
+  body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: 0.013m;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  
+  a {
+    color: #00B7FF;
+  }
+
+  #create-form {
+    margin-bottom: 5rem;
+  }
+  

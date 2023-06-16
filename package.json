@@ -1,0 +1,49 @@
+{
+  "name": "ataraxia",
+  "version": "1.0.0",
+  "description": "Fifth weekly exercise.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "lint": "eslint --ignore-path .eslintignore",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ts|json)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/aiotrope/ataraxia.git"
+  },
+  "author": "aiotrope",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/aiotrope/ataraxia/issues"
+  },
+  "homepage": "https://github.com/aiotrope/ataraxia#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.2.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "express-fileupload": "^1.4.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "http-errors": "^2.0.0",
+    "mime-types": "^2.1.35",
+    "mongoose": "^7.3.0",
+    "morgan": "^1.10.0",
+    "sanitize": "^2.1.2",
+    "winston": "^3.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
+  },
+  "engines": {
+    "node": "14.21.3",
+    "npm": "6.14.18"
+  }
+}
