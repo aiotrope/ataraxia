@@ -146,7 +146,7 @@ router.post('/images', async (req, res) => {
   }
 })
 
-router.get('/images/:imageId', async (req, res) => {
+/* router.get('/images/:imageId', async (req, res) => {
   let { imageId } = req.params
 
   try {
@@ -175,6 +175,26 @@ router.get('/images/:imageId', async (req, res) => {
     res.status(400).json({ error: err.message })
   }
 })
+ */
+
+router.get('/images/:imageId', async (req, res) => {
+  let { imageId } = req.params
+
+  try {
+    let image = await Image.findById(imageId)
+
+    res.cookie('imageName', image.name)
+
+    res.status(200).json(image)
+
+
+  } catch (err) {
+    logger.error(err.message)
+
+    res.status(400).json({ error: err.message })
+  }
+})
+
 
 router.get('/download', (req, res) => {
   const downloadPath =
