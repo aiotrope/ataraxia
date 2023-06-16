@@ -183,10 +183,11 @@ router.get('/images/:imageId', async (req, res) => {
   try {
     let image = await Image.findById(imageId)
 
-    res.cookie('imageName', image.name)
+    //res.cookie('imageName', image.name)
 
-    res.status(200).json(image)
+    const downloadPath = path.resolve('./uploads') + '/recipe-' + image.name
 
+    res.download(downloadPath)
 
   } catch (err) {
     logger.error(err.message)
@@ -194,7 +195,6 @@ router.get('/images/:imageId', async (req, res) => {
     res.status(400).json({ error: err.message })
   }
 })
-
 
 router.get('/download', (req, res) => {
   const downloadPath =
@@ -224,6 +224,5 @@ router.get('/categories', async (req, res) => {
     res.status(400).json({ error: err.message })
   }
 })
-
 
 module.exports = router
