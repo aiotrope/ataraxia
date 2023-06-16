@@ -1,0 +1,18 @@
+POST http://localhost:3000/recipe/
+Content-Type: application/json
+
+{
+   "name": "pasta",
+   "ingredient": ["tomato sauce"],
+   "instruction": ["sautee"]
+  
+}
+
+### fetch recipe by name
+GET http://localhost:3000/recipe/Pizza
+
+### fetch all recipes
+GET http://localhost:3000/recipe/
+
+### fetch image by id
+GET http://localhost:3000/images/648a95f3141e78302d202623

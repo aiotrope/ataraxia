@@ -3,6 +3,7 @@ Fifth weekly exercise.
 
 ## CLI Commands
 
+```bash
 # install dependencies
 $ npm install
 
@@ -42,4 +43,5 @@ $ db.collection_name.insertMany({objects})
 
 # show all collection docs
 $ db.collection_name.find()
+```
 
