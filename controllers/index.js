@@ -151,12 +151,24 @@ router.get('/images/:imageId', async (req, res) => {
 
   try {
     let image = await Image.findById(imageId)
-
     res.cookie('imageName', image.name)
+    //let imgDiv = `<div id="images"><img src='http://localhost:3000/recipe-${image.name}' /><br><br><a href="/download">Download</a></div>`
+    //res.send(imgDiv)
+    //res.download(image)
+    const downloadPath =
+      path.resolve('./uploads') + '/recipe-' + req.cookies.imageName
+    //res.download(downloadPath)
 
-    let imgDiv = `<div id="images"><img src='http://localhost:3000/recipe-${image.name}' /><br><br><a href="/download">Download</a></div>`
+    const filename = path.basename(downloadPath)
 
-    res.send(imgDiv)
+    const mimetype = mime.contentType(downloadPath)
+
+    res.setHeader('Content-disposition', 'attachment; filename=' + filename)
+
+    res.setHeader('Content-type', mimetype)
+
+    const filestream = fs.createReadStream(downloadPath)
+    filestream.pipe(res)
   } catch (err) {
     logger.error(err.message)
 
@@ -192,5 +204,6 @@ router.get('/categories', async (req, res) => {
     res.status(400).json({ error: err.message })
   }
 })
+
 
 module.exports = router

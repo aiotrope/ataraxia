@@ -1,15 +1,25 @@
 'use strict'
 
 var recipesArr = []
+var categoryArr = []
 var ingredientsArr = []
 var instructionsArr = []
 var dietArr = []
+
 var renderRecipes = document.querySelector('#render-recipes')
+
+var renderCategory = document.querySelector('#render-category')
+
 var asIngredient = document.getElementById('as-ingredient')
+
 var asInstruction = document.getElementById('as-instruction')
+
 var search = document.querySelector('#search')
+
 const inputName = document.querySelector('#name-text')
+
 var images = document.querySelector('#image-input')
+
 var dietCheckboxes = document.getElementsByName('text')
 
 const saveForm = document.querySelector('#create-form')
@@ -75,6 +85,26 @@ const fetchAndSetAllRecipes = async () => {
 
 fetchAndSetAllRecipes()
 
+const fetchAndSetAllCategories = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/categories')
+
+    const data = await response.json()
+
+    if (response.status === 200 && data) {
+      let clone = await JSON.parse(JSON.stringify(data))
+      //console.log(clone)
+      categoryArr = clone
+
+      categoryList(categoryArr)
+    }
+  } catch (error) {
+    console.error('Error fetching recipes: ', error.message)
+  }
+}
+
+fetchAndSetAllCategories()
+
 const postRecipe = async (data) => {
   try {
     const response = await fetch('http://localhost:3000/recipe/', {
@@ -92,7 +122,6 @@ const postRecipe = async (data) => {
     renderList(recipesArr)
 
     return result
-
   } catch (error) {
     console.error('Error:', error)
   }
@@ -205,4 +234,16 @@ const renderSearch = (data) => {
     </div>`
 
   renderRecipes.innerHTML = div
+}
+
+const categoryList = (arrObj) => {
+  /* eslint-disable-next-line quotes */
+  let container = `<legend>Categories</legend>`
+  /* eslint-enable-next-line quotes */
+
+  Object.values(arrObj).forEach(({ name }) => {
+    container += `<label for=${name}><input type='checkbox' id=${name} name='text' value=${name} /><span>${name}</span></label><br>`
+  })
+
+  renderCategory.innerHTML = container
 }
